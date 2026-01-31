@@ -1,0 +1,54 @@
+# qc-long-short-hold-backtest
+
+This repository contains two QuantConnect Lean implementations of a long–short equity strategy that differ only in how trades are entered: immediate market execution versus conditional limit orders.
+
+---
+
+## Strategy Summary
+
+Both versions:
+
+- Trade GOOG and AMZN.
+- Start with $1,000,000 in capital.
+- Run from June 1, 2024 to June 1, 2025.
+- Enter fixed positions:
+  - Long 3,000 shares of GOOG.
+  - Short 4,000 shares of AMZN.
+- Monitor portfolio value daily and liquidate if equity falls more than $100,000 from the starting level.
+
+---
+
+## Repository Structure
+
+.
+├── marketOrder/
+│ ├── marketOrderStrategy.py
+│ └── README.md
+├── limitOrder/
+│ ├── limitOrderStrategy.py
+│ └── README.md
+└── README.md
+
+---
+
+## Implementations
+
+### marketOrder/
+Enters both positions immediately using market orders and holds until the drawdown rule is triggered or the backtest ends.
+
+### limitOrder/
+Records first-day prices and only enters positions when GOOG falls 5% and AMZN rises 5% from those levels using limit orders.
+
+---
+
+## How to Run
+
+1. Create a Python project on QuantConnect.
+2. Paste one of the strategy files into the main script.
+3. Run a backtest and review the results.
+
+---
+
+## Notes
+
+These strategies were built for educational purposes and are not intended for live trading.

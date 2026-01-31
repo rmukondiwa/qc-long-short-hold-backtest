@@ -1,0 +1,38 @@
+# Market-Order Long–Short Hold Strategy (QuantConnect)
+
+This directory contains a QuantConnect Lean algorithm that implements a long–short buy-and-hold strategy using market orders.
+
+---
+
+## Overview
+
+- **Backtest period:** June 1, 2024 to June 1, 2025
+- **Starting capital:** $1,000,000
+- **Initial positions:**
+  - Long 3,000 shares of GOOG
+  - Short 4,000 shares of AMZN
+- **Risk rule:** The portfolio is checked daily and fully liquidated if total value falls more than $100,000 below the starting level.
+
+---
+
+## Implementation Notes
+
+- The strategy enters once and then holds until either the stop is triggered or the backtest ends.
+- Portfolio drawdown is measured using `Portfolio.TotalPortfolioValue`.
+- Because the data resolution is daily, market orders submitted at the close are converted to Market-On-Open orders for the next trading session.
+
+---
+
+## Files
+
+- `marketOrderStrategy.py` — algorithm implementation.
+
+---
+
+## Running the Strategy
+
+1. Create a Python project in QuantConnect.
+2. Upload or paste `marketOrderStrategy.py` into the main file.
+3. Run a backtest and inspect results in the Orders and Trades tabs.
+
+---

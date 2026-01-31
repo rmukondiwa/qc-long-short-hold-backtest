@@ -1,0 +1,39 @@
+# Conditional Limit-Order Long–Short Strategy (QuantConnect)
+
+This directory contains a version of the same long–short strategy that only enters positions when price thresholds relative to the first trading day are reached.
+
+---
+
+## Overview
+
+- **Backtest period:** June 1, 2024 to June 1, 2025  
+- **Starting capital:** $1,000,000  
+- **Reference prices:** GOOG and AMZN closing prices from the first trading day.
+- **Entry rules:**
+  - Buy 3,000 GOOG if price falls 5% below the reference level.
+  - Short 4,000 AMZN if price rises 5% above the reference level.
+- **Risk rule:** Liquidate all positions if portfolio value drops more than $100,000 from the starting capital.
+
+---
+
+## Implementation Notes
+
+- Day-one prices are stored once and used to compute the limit levels.
+- Limit orders are submitted a single time and remain active until filled or the strategy exits.
+- With daily data, the “first touch” of a price level is approximated using Lean’s fill model.
+
+---
+
+## Files
+
+- `limitOrderStrategy.py` — algorithm implementation.
+
+---
+
+## Running the Strategy
+
+1. Create a Python project in QuantConnect.
+2. Paste `limitOrderStrategy.py` into the main script.
+3. Run a backtest to view fills and performance in the Orders and Trades panels.
+
+---
